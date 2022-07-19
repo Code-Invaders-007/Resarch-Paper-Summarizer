@@ -1,10 +1,7 @@
-from crypt import methods
-from pydoc import render_doc
-import os
-from urllib.request import Request
-from flask import Flask, render_template, flash, request, redirect, url_for
-# from werkzeug.utils import secure_filename
-# from flask_sqlalchemy import SQLAlchemy
+
+#import Flask , render_template(to render html pages), and request
+from flask import Flask, render_template, request
+
 
 
 
@@ -13,15 +10,14 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET','POST'])
 
+#defining function to retrive file from user
 def index():
     if request.method=='POST':
         file = request.files['file']
-       
-        # fil = open(file.stream,'r')
+    #   reading file without saving it 
         txt=file.stream.read()
-        print("hellow this to test")
         print("ehel",txt)
-        return render_template('index.html')
+        return render_template('index.html',txt = txt)
 
     return render_template('index.html')
 
